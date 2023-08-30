@@ -1,0 +1,5 @@
+db	bowtie_SEPI
+sequences	input.fastq
+verysensitive	true
+atleast	mock_reads.MAP.fastq
+processors	16
