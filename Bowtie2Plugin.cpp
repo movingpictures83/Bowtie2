@@ -47,11 +47,51 @@ myCommand += "--threads";
 myCommand += " ";
 myCommand += parameters["threads"] + " ";
 }
+
+if (parameters.count("endtoend") != 0 && parameters["endtoend"] == "True") {
+	myCommand += "--end-to-end ";
+}
 if (parameters.count("all") != 0 && parameters["all"] == "True") {
 	myCommand += "-a ";
 }
+if (parameters.count("filetype") != 0 && parameters["filetype"] == "FASTA") {
+	myCommand += "-f ";
+}
+if (parameters.count("seedsubstr") != 0) {
+	myCommand += "-L "+parameters["seedsubstr"]+" ";
+}
+if (parameters.count("maxpenalty") != 0) {
+	myCommand += "--mp "+parameters["maxpenalty"]+" ";
+}
+if (parameters.count("nonpenalty") != 0) {
+	myCommand += "--np "+parameters["nonpenalty"]+" ";
+}
+if (parameters.count("readgapopen") != 0) {
+	myCommand += "--rdg "+parameters["readgapopen"]+" ";
+}
+if (parameters.count("refgapopen") != 0) {
+	myCommand += "--rfg "+parameters["refgapopen"]+" ";
+}
+if (parameters.count("scoremin") != 0) {
+	myCommand += "--score-min "+parameters["scoremin"]+" ";
+}
 if (parameters.count("atleast") != 0) {
 	myCommand += "--al "+std::string(PluginManager::prefix())+parameters["atleast"]+" ";
+}
+if (parameters.count("giveup") != 0) {
+	myCommand += "-D "+parameters["giveup"]+" ";
+}
+if (parameters.count("repeat") != 0) {
+	myCommand += "-R "+parameters["repeat"]+" ";
+}
+if (parameters.count("mismatch") != 0) {
+	myCommand += "-N "+parameters["mismatch"]+" ";
+}
+if (parameters.count("length") != 0) {
+	myCommand += "-L "+parameters["length"]+" ";
+}
+if (parameters.count("interval") != 0) {
+	myCommand += "-i "+parameters["interval"]+" ";
 }
 if (parameters.count("local") != 0 && parameters["local"] == "True") {
 	myCommand += "--local ";
@@ -80,8 +120,8 @@ if (parameters.count("reorder") != 0 && parameters["reorder"] == "True") {
 myCommand += "-S";
 myCommand += " ";
 myCommand += outputfile+".sam";
-myCommand += " ";
-myCommand += "1>"+outputfile+".sam0.bowtie2.out 2>"+outputfile+".sam0.bowtie2.err";
+//myCommand += " ";
+//myCommand += "1>"+outputfile+".sam0.bowtie2.out 2>"+outputfile+".sam0.bowtie2.err";
 std::cout << myCommand << std::endl;
 system(myCommand.c_str());
 }
